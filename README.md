@@ -15,6 +15,7 @@ This project creates functionality to an social media site by creating schemas, 
 ## Installation
 1. Clone this repositorty. 
 2. Run NPM init to install dependencies (mongoose, express)
+    Note: In order to install Mongoose, you must first ensure you have Node.js (https://nodejs.org/en/) & MongoDB (https://www.mongodb.com/try/download/community)installed. 
 3. Start server using npm start
 4. Utilize Insomnia to test route functionality for creating, reading, updating, and deleting entries.
 ## Technologies

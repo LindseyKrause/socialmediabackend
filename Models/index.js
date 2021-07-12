@@ -1,16 +1,3 @@
-const { Schema, model, Types } = require('mongoose');
+const User = require('./user-model');
 
-const User = new Wchema(
-    {
-        userName: {
-            type: String
-            
-}
-
-
-
-
-
-
-    }
-)
+module.exports = { User, }
