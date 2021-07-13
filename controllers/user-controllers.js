@@ -5,7 +5,7 @@ const userController = {
     //todo get all users
     getAllUsers(req, res) {
         User.find({})
-            .select(-__v)
+            // .select(-__v)
             .sort({ _id: -1 })
             .then(dbUserData => res.json(dbUserData))
             .catch(err => {
@@ -16,13 +16,13 @@ const userController = {
     //todo get a single user by id and poppulated thought and friend data
     getUserById({ params }, res) {
         User.findOne({ _id: params.id })
-            .populate({
-                path: 'thoughts',
-                select: '-__v',
-                path: 'friends',
-                select: '-__v'
-            })
-            .select('-__v')
+            // .populate({
+            //     path: 'thoughts',
+            //     select: '-__v',
+            //     path: 'friends',
+            //     select: '-__v'
+            // })
+            // .select('-__v')
             .then(dbUserData => res.json(dbUserData))
             .catch(err => {
                 console.log(err);
