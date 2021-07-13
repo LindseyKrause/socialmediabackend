@@ -50,6 +50,8 @@ const userController = {
     //todo bonus: remove a user's associated thoughts when deleted
     //friend routes------------------------------------
     //todo post to add a new friend to a user's friend list
+
+    //Idea- $set? Insert?( I think this is for documents)
     updateUserFriend({ params, body }, res) {
         User.findOneAndUpdate({ _id: params.id }, { $push: { friends: body } }, { new: true })
             .then(dbUserData => {
