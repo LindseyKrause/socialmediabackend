@@ -1,0 +1,25 @@
+{
+  "name": "socialmediabackend",
+  "version": "1.0.0",
+  "description": "This project creates the functionality for the backend of a social media application.",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.13.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LindseyKrause/socialmediabackend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LindseyKrause/socialmediabackend/issues"
+  },
+  "homepage": "https://github.com/LindseyKrause/socialmediabackend#readme"
+}
