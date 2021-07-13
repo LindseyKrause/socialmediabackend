@@ -16,13 +16,7 @@ const userController = {
     //todo get a single user by id and poppulated thought and friend data
     getUserById({ params }, res) {
         User.findOne({ _id: params.id })
-            // .populate({
-            //     path: 'thoughts',
-            //     select: '-__v',
-            //     path: 'friends',
-            //     select: '-__v'
-            // })
-            // .select('-__v')
+            .select('-__v')
             .then(dbUserData => res.json(dbUserData))
             .catch(err => {
                 console.log(err);
@@ -57,7 +51,7 @@ const userController = {
     //friend routes------------------------------------
     //todo post to add a new friend to a user's friend list
     updateUserFriend({ params, body }, res) {
-        User.findOneAndUpdate({ _id: params.id }, body, { new: true })
+        User.findOneAndUpdate({ _id: params.id }, { $push: { friends: body } }, { new: true })
             .then(dbUserData => {
                 if (!dbUserData) {
                     res.status(404).json({ message: 'No user found with this id!' });
