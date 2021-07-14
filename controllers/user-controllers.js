@@ -53,7 +53,7 @@ const userController = {
 
     //Idea- $set? Insert?( I think this is for documents)
     updateUserFriend({ params, body }, res) {
-        User.findOneAndUpdate({ _id: params.id }, { $push: { friends: body } }, { new: true })
+        User.findOneAndUpdate({ _id: params.id }, { $addToSet: { friends: body.friend } }, { new: true })
             .then(dbUserData => {
                 if (!dbUserData) {
                     res.status(404).json({ message: 'No user found with this id!' });
