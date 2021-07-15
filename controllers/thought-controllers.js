@@ -32,7 +32,7 @@ const thoughtController = {
                 );
             })
             .then(dbThoughtData => {
-                if(!dbUserData) {
+                if (!dbUserData) {
                     res.status(404).json({ message: 'No User Found with this ID' });
                     return;
                 }
@@ -77,9 +77,18 @@ const thoughtController = {
     deleteReaction({ params, body }, res) {
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
-            { $pull: { reactions: body } })
-            .then(dbReactionData => res.json(dbReactionData))
-            .catch(err => res.json(err));
+            { $pull: { reaction: body } },
+            { new: true }
+        )
+            .then(dbReactionData => {
+                if (!dbReactionData) {
+                    return res.status(404).json({ message: 'No thoughts with this id!' });
+                }
+                res.json(dbReactionData);
+            })
+            .catch(err => {
+                res.status(500).json(err);
+            });
     },
 };
 
