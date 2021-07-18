@@ -73,7 +73,6 @@ const thoughtController = {
             })
             .catch(err => res.json(err));
     },
-    //todo delete to remove a friend from Thought's friend list. 
     deleteReaction({ params, body }, res) {
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },

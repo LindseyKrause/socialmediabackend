@@ -2,7 +2,6 @@ const { User } = require('../Models')
 
 //user Routes -------------------------------------
 const userController = {
-    //todo get all users
     getAllUsers(req, res) {
         User.find({})
             // .select(-__v)
@@ -13,7 +12,7 @@ const userController = {
                 res.sendStatus(400);
             });
     },
-    //todo get a single user by id and poppulated thought and friend data
+    
     getUserById({ params }, res) {
         User.findOne({ _id: params.id })
             .select('-__v')
@@ -23,13 +22,11 @@ const userController = {
                 res.sendStatus(400);
             });
     },
-    // todo post new user
     postNewUser({ body }, res) {
         User.create(body)
             .then(dbUserData => res.json(dbUserData))
             .catch(err => res.json(err));
     },
-    // todo put to update user by _id
     updateUser({ params, body }, res) {
         User.findOneAndUpdate({ _id: params.id }, body, { new: true })
             .then(dbUserData => {
@@ -41,17 +38,14 @@ const userController = {
             })
             .catch(err => res.json(err));
     },
-    //todo delete to remove user by its _id
     deleteUser({ params }, res) {
         User.findOneAndDelete({ _id: params.id })
             .then(dbUserData => res.json(dbUserData))
             .catch(err => res.json(err));
     },
-    //todo bonus: remove a user's associated thoughts when deleted
     //friend routes------------------------------------
-    //todo post to add a new friend to a user's friend list
 
-    //Idea- $set? Insert?( I think this is for documents)
+    //named as "update" because it is updating a user to add a friend to it, however this is the "Add Friend" functionality. 
     updateUserFriend({ params }, res) {
         User.findOneAndUpdate({ _id: params.id }, { $addToSet: { friends: params.friendId } }, { new: true })
             .then(dbUserData => {
@@ -63,7 +57,6 @@ const userController = {
             })
             .catch(err => res.json(err));
     },
-    //todo delete to remove a friend from user's friend list. 
     deleteUserFriend({ params }, res) {
         User.findOneAndUpdate({ _id: params.id }, { $pull: {friends: params.friendId}})
             .then(dbUserData => res.json(dbUserData))
